@@ -153,7 +153,6 @@ function restartGame() {
     snake.y = 100;
     snake.xSpeed = 20;
     snake.ySpeed = 0;
-    
-    
+        
     getRandomLocation();
 }
