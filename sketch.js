@@ -1,20 +1,70 @@
-var snake;
-var globalSpeed;
-var foodX;
-var foodY;
-var gridSize = 20;
+var GAMESIZE_X = 700;
+var GAMESIZE_Y = 700;
+var BLOCKSIZE = Math.min(GAMESIZE_X, GAMESIZE_Y) / 80;
 
-var eatSound;
-var gameOverSound;
+var Snake = function () {
+    this.head = {x:0,y:0};
+    this.body = [this.head];
+    
+    this.moveToDir = "RIGHT";
+    
+    this.foodx = this.genLocation();
+    this.foody = this.genLocation();
+    
+    
+    this.genLocation = function () {
+        let randomNumber = Math.random()*BLOCKSIZE;
+        randomNumber = randomNumber - randomNumber % BLOCKSIZE;
+        console.log("random number generated : ", randomNumber);
+        return randomNumber;
+    }
+    
+    this.keepMoving = function () {
+        if (this.moveToDir === "UP"){
+            this.head.y -= BLOCKSIZE;
+        }
+        else if (this.moveToDir === "DOWN"){
+            this.head.y += BLOCKSIZE;
+        }
+        else if (this.moveToDir === "RIGHT"){
+            this.head.x += BLOCKSIZE;
+        }   
+        else if(this.moveToDir === "LEFT") {
+            this.head.x -= BLOCKSIZE;
+        }            
+    }
+}
 
-var canvasHeight;
-var btnPP;
-var btnRestart;
+var snake = new Snake();
+
+function keyPressed() {
+    if (keyCode === UP_ARROW && snake.moveToDir !== "DOWN") {
+        snake.moveToDir = "UP";    
+    }
+    else if (keyCode === DOWN_ARROW && snake.moveToDir !== "UP"){
+        snake.moveToDir = "DOWN"
+    }
+    else if (keyCode === RIGHT_ARROW && snake.moveToDir !== "LEFT"){
+        snake.moveToDir = "RIGHT";
+    }
+    else if (keyCode === LEFT_ARROW && snake.moveToDir !== "RIGHT"){
+        snake.moveToDir = "LEFT";
+    }
+    
+    /*
+    else if (keyCode == 80 || keyCode == 120){
+        if (keepPlaying === true) {
+            keepPlaying = false;
+        }else {
+            keepPlaying = true;
+        }
+    }else if (keyCode == 82 || keyCode == 114){ // r or R is pressed.
+        restartGame();
+    }
+    */
+    
 
 
-var keepPlaying;
-
-var htmlScore;
 
 function setup() {
     keepPlaying = true;
@@ -115,34 +165,11 @@ function getRandomLocation() {
     foodY = floor((random(0,720)));
     console.log("food location ", foodX, foodY);
 }
-
-function keyPressed() {
-    if (keyCode === UP_ARROW) {
-        snake.dir(0,-globalSpeed);
-    } else if (keyCode === DOWN_ARROW){
-        snake.dir(0,globalSpeed);
-    }
-    else if (keyCode === RIGHT_ARROW){
-        snake.dir(globalSpeed,0);
-    }
-    else if (keyCode === LEFT_ARROW){
-        snake.dir(-globalSpeed,0);
-    }
-    else if (keyCode == 80 || keyCode == 120){
-        if (keepPlaying === true) {
-            keepPlaying = false;
-        }else {
-            keepPlaying = true;
-        }
-    }else if (keyCode == 82 || keyCode == 114){ // r or R is pressed.
-        restartGame();
-    }
-    
-
     
     
 }
 
+/*
 function restartGame() {
     gameOverSound.play();
     
@@ -155,4 +182,38 @@ function restartGame() {
     snake.ySpeed = 0;
         
     getRandomLocation();
+}
+*/
+
+
+    
+function setup(){
+    
+    createCanvas(GAMESIZE_X, GAMESIZE_Y);
+    frameRate(10);
+    
+}
+
+function draw(){
+    background(0);
+    
+    snake.keepMoving();
+    
+    fill(255);
+    stroke(255);
+    for (var i = 0 ; i < snake.body.length; i++){
+        rect(snake.body[i].x ,snake.body[i].y , BLOCKSIZE, BLOCKSIZE);    
+    }
+    
+    if (snake.head.x !== snake.foodx && snake.head.y !== snake.foody){
+        
+    }
+    else{
+        snake.genLocation;
+    }
+    
+    
+    
+    
+    
 }
