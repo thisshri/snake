@@ -5,18 +5,27 @@ var BLOCKSIZE = Math.min(GAMESIZE_X, GAMESIZE_Y) / 80;
 var Snake = function () {
     this.head = {x:0,y:0};
     this.body = [this.head];
+    this.foodx = BLOCKSIZE*3;
+    this.foody = BLOCKSIZE*3;
     
     this.moveToDir = "RIGHT";
     
-    this.genLocation = function () {
-        let randomNumber = Math.random()*BLOCKSIZE;
-        randomNumber = randomNumber - randomNumber % BLOCKSIZE;
-        console.log("random number generated : ", randomNumber);
-        return randomNumber;
+    this.generateRandomNumber = function(value){
+        let randNum = Math.random()*value;
+        randNum = Math.round(randNum);
+        randNum -= randNum % BLOCKSIZE ;
+       // console.log("randNum: ",randNum, "block size: ",BLOCKSIZE);
+        
+        return randNum;
+        
     }
-    
-    this.foodx = this.genLocation();
-    this.foody = this.genLocation();
+        
+          
+    this.generateFood = function() {
+        this.foodx = this.generateRandomNumber(GAMESIZE_X);
+        this.foody = this.generateRandomNumber(GAMESIZE_Y); 
+        
+    }
     
     
 
@@ -33,7 +42,17 @@ var Snake = function () {
         }   
         else if(this.moveToDir === "LEFT") {
             this.head.x -= BLOCKSIZE;
-        }            
+        }
+        else if (this.moveToDir === "STOP") {
+            //don't do anything.
+        }
+        
+        if (this.body.length > 1 ){
+            this.body.push({x:this.head.x, y: this.head.y});
+            this.body.shift();
+          }
+        //console.log("================== " );
+        //this.body.forEach(function(element){ console.log(element)});
     }
 }
 
@@ -52,6 +71,9 @@ function keyPressed() {
     else if (keyCode === LEFT_ARROW && snake.moveToDir !== "RIGHT"){
         snake.moveToDir = "LEFT";
     }
+    else if (keyCode == 80 || keyCode == 120){
+        snake.moveToDir = "STOP";
+    }
 }
     
     /*
@@ -69,7 +91,7 @@ function keyPressed() {
 function setup(){
     
     createCanvas(GAMESIZE_X, GAMESIZE_Y);
-    frameRate(10);
+    frameRate(20);
     
 }
 
@@ -77,15 +99,24 @@ function draw(){
     background(0);
     
     snake.keepMoving();
-    
+   
+    // draw food 
     fill(255);
     stroke(255);
+
+    rect(snake.foodx ,snake.foody , BLOCKSIZE, BLOCKSIZE);  
+    
+    
+    
+    fill(255);
+    stroke(0);
     for (var i = 0 ; i < snake.body.length; i++){
         rect(snake.body[i].x ,snake.body[i].y , BLOCKSIZE, BLOCKSIZE);    
     }
     
     if (snake.head.x === snake.foodx && snake.head.y === snake.foody){
-        snake.genLocation();
+        snake.body.push({x:snake.foodx, y:snake.foody});
+        snake.generateFood();
     }
     
 }
