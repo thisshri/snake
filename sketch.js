@@ -42,6 +42,22 @@ var Snake = function () {
         return  true; //snake didn't hit the body.
     }// didntHitTheBody
 
+
+
+    this.didnotHitTheBoundry = function () {
+        //check if it hit the boundry
+        // < 0 because snake shouldnot die on the fist row or first column of the game.
+        if (this.head.x < 0 || this.head.y < 0 ||
+            this.head.x >= GAMESIZE_X || this.head.y >= GAMESIZE_Y){
+            console.log("sname hit boundry!");
+
+
+            return false;
+        }else {
+            return true;
+        }
+    }// boundry
+
     this.keepMoving = function () {
         if (this.moveToDir === "UP"){
             this.head.y -= BLOCKSIZE;
