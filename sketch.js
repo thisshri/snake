@@ -27,6 +27,20 @@ var Snake = function () {
 
     }
 
+    this.didntHitTheBody function() {
+        //for each is not working with head object array.
+
+        for (let i = 1; i < this.body.length; i++){
+            if (this.body[i].x === this.head.x &&
+                this.body[i].y === this.head.y)){
+                    //snake hit the body.
+                    console.console.log("snake hit the body");
+                return false;
+
+            } //if
+        }// loop
+        return  true; //snake didn't hit the body.
+    }// didntHitTheBody
 
     this.keepMoving = function () {
         if (this.moveToDir === "UP"){
@@ -47,6 +61,13 @@ var Snake = function () {
 
         this.body.push({x:this.head.x, y: this.head.y});
         this.body.shift();
+
+        //not hit the boundry
+
+
+        //not hit the body
+        this.didntHitTheBoundry();
+
     }
 }
 
@@ -80,8 +101,6 @@ function setup(){
 function draw(){
     background(0);
 
-    snake.keepMoving();
-
     // draw food
     fill(255);
     stroke(255);
@@ -100,5 +119,7 @@ function draw(){
         snake.body.push({x:snake.foodx, y:snake.foody});
         snake.generateFood();
     }
+
+    snake.keepMoving();
 
 }
