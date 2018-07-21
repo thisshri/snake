@@ -9,7 +9,6 @@ var Snake = function () {
     this.foody = BLOCKSIZE*3;
 
     this.moveToDir = "RIGHT";
-    //hit boundry
 
     this.generateRandomNumber = function(value){
         let randNum = Math.random()*value;
@@ -29,8 +28,6 @@ var Snake = function () {
     }
 
 
-
-
     this.keepMoving = function () {
         if (this.moveToDir === "UP"){
             this.head.y -= BLOCKSIZE;
@@ -48,10 +45,10 @@ var Snake = function () {
             //don't do anything.
         }
 
-        if (this.body.length > 1 ){
-            this.body.push({x:this.head.x, y: this.head.y});
-            this.body.shift();
-          }
+        //if (this.body.length > 1 ){
+        this.body.push({x:this.head.x, y: this.head.y});
+        this.body.shift();
+          //}
         //console.log("================== " );
         //this.body.forEach(function(element){ console.log(element)});
     }
@@ -76,18 +73,6 @@ function keyPressed() {
         snake.moveToDir = "STOP";
     }
 }
-
-    /*
-    else if (keyCode == 80 || keyCode == 120){
-        if (keepPlaying === true) {
-            keepPlaying = false;
-        }else {
-            keepPlaying = true;
-        }
-    }else if (keyCode == 82 || keyCode == 114){ // r or R is pressed.
-        restartGame();
-    }
-    */
 
 function setup(){
 
