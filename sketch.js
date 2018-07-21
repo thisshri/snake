@@ -27,14 +27,14 @@ var Snake = function () {
 
     }
 
-    this.didntHitTheBody function() {
+    this.didntHitTheBody = function() {
         //for each is not working with head object array.
 
-        for (let i = 1; i < this.body.length; i++){
+        for (let i = 0; i < this.body.length-1; i++){
             if (this.body[i].x === this.head.x &&
-                this.body[i].y === this.head.y)){
+                this.body[i].y === this.head.y){
                     //snake hit the body.
-                    console.console.log("snake hit the body");
+                    console.log("snake hit the body");
                 return false;
 
             } //if
@@ -63,10 +63,10 @@ var Snake = function () {
         this.body.shift();
 
         //not hit the boundry
-
+        this.didntHitTheBody();
 
         //not hit the body
-        this.didntHitTheBoundry();
+        //this.didntHitTheBoundry();
 
     }
 }
