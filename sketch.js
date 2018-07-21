@@ -45,12 +45,8 @@ var Snake = function () {
             //don't do anything.
         }
 
-        //if (this.body.length > 1 ){
         this.body.push({x:this.head.x, y: this.head.y});
         this.body.shift();
-          //}
-        //console.log("================== " );
-        //this.body.forEach(function(element){ console.log(element)});
     }
 }
 
