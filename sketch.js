@@ -1,6 +1,7 @@
-var GAMESIZE_X = 700;//window.innerWidth;
-var GAMESIZE_Y = 700;//window.innerHeight;
-var BLOCKSIZE = Math.min(GAMESIZE_X, GAMESIZE_Y) / 80;
+var GAMESIZE_X =window.innerWidth;
+var GAMESIZE_Y =window.innerHeight;
+var BLOCKSIZE = Math.round ( Math.min(GAMESIZE_X, GAMESIZE_Y) / 80) ;
+console.log(BLOCKSIZE);
 
 var Snake = function () {
     this.head = {x:0,y:0};

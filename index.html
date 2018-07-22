@@ -9,9 +9,6 @@
     <script src="sketch.js"></script>
 
     <script type="text/javascript">
-        var gameCanvas = document.getElementById("defaultCanvas0");
-        gameCanvas.className = "container-fluid";
-
         function hideScroll() {
             document.documentElement.style.overflow = 'hidden';
 
@@ -19,8 +16,11 @@
 
     </script>
 </head>
-  <body onload="hideScroll()">
-
+  <body  onload="hideScroll()" >
+      <div class="topBar">
+          <h3 class="float-right" >Score <span class="badge badge-secondary">9999</span></h3>
+          <button type="button" class="btn btn-primary">Pause</button>
+      </div>
 
     </body>
 </html>
