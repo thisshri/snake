@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
     <script src="lib/p5.js"></script>
     <script src="lib/p5.sound.js"></script>
     <script src="lib/p5.dom.js"></script>
     <script src="sketch.js"></script>
+
+    <script type="text/javascript">
+        var gameCanvas = document.getElementById("defaultCanvas0");
+        gameCanvas.className = "container-fluid";
+
+        function hideScroll() {
+            document.documentElement.style.overflow = 'hidden';
+
+        }
+
+    </script>
 </head>
-  <body>
+  <body onload="hideScroll()">
+
 
     </body>
 </html>

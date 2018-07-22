@@ -1,5 +1,5 @@
-var GAMESIZE_X = 700;
-var GAMESIZE_Y = 700;
+var GAMESIZE_X = window.innerWidth;
+var GAMESIZE_Y = window.innerHeight;
 var BLOCKSIZE = Math.min(GAMESIZE_X, GAMESIZE_Y) / 80;
 
 var Snake = function () {
@@ -125,7 +125,7 @@ function draw(){
 
 
 
-    fill(255);
+    fill(0,255,29);
     stroke(0);
     for (var i = 0 ; i < snake.body.length; i++){
         rect(snake.body[i].x ,snake.body[i].y , BLOCKSIZE, BLOCKSIZE);
