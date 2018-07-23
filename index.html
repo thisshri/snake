@@ -12,14 +12,31 @@
         function hideScroll() {
             document.documentElement.style.overflow = 'hidden';
 
+
+
+        }
+        function initSocre(){
+            lScore = document.getElementById("score");
+            lScore.innerText = 0;
+            //window.alert(lScore);
+        }
+        function onClickPPbtn() {
+            var btnId = document.getElementById("ppBtn");
+            if (btnId.innerText === "Pause"){
+                btnId.innerText = "Play";
+                snake.play = false;
+            } else {
+                btnId.innerText = "Pause";
+                snake.play = true;
+            }
         }
 
     </script>
 </head>
   <body  onload="hideScroll()" >
       <div class="topBar">
-          <h3 class="float-right" >Score <span class="badge badge-secondary">9999</span></h3>
-          <button type="button" class="btn btn-primary">Pause</button>
+          <h3 onload="initSocre()" class="float-right" >Score <span id="score" class="badge badge-secondary">9999</span></h3>
+          <button id="ppBtn" type="button" class="btn btn-primary" onclick="onClickPPbtn()">Pause</button>
       </div>
 
     </body>

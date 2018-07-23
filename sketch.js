@@ -8,6 +8,7 @@ var Snake = function () {
     this.body = [this.head];
     this.foodx = BLOCKSIZE*3;
     this.foody = BLOCKSIZE*3;
+    this.play = true;
 
     this.moveToDir = "RIGHT";
 
@@ -96,15 +97,20 @@ var Snake = function () {
         this.head.x = 0;
         this.head.y = 0;
         this.moveToDir = "RIGHT";
+        score = 0;
+        document.getElementById("score").innerText = score;
 
 
 
 
         //this.keepMoving();
     }
+
 }
 
 var snake = new Snake();
+
+var score = 0;
 
 function keyPressed() {
     if (keyCode === UP_ARROW && snake.moveToDir !== "DOWN") {
@@ -125,9 +131,11 @@ function keyPressed() {
 }
 
 function setup(){
-
     createCanvas(GAMESIZE_X, GAMESIZE_Y);
     frameRate(20);
+
+    var lScore = document.getElementById("score");
+    lScore.innerText = 0;
 
 }
 
@@ -156,6 +164,9 @@ function draw(){
         because food was just added here and it becomes part of body.
         */
 
+        score++;
+        document.getElementById("score").innerText = score;
+
         snake.generateFood();
 
 
@@ -163,7 +174,10 @@ function draw(){
 
 
     if (snake.notHitBody() && snake.notHitBoundry()){
-        snake.keepMoving();
+        if (snake.play){
+            snake.keepMoving();
+        }
+
     }else {
         snake.restartGame();
 
