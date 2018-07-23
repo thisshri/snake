@@ -99,11 +99,6 @@ var Snake = function () {
         this.moveToDir = "RIGHT";
         score = 0;
         document.getElementById("score").innerText = score;
-
-
-
-
-        //this.keepMoving();
     }
 
 }
